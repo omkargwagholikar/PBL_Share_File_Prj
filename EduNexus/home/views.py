@@ -9,8 +9,7 @@ config={
     "databaseURL": "https://test1-3a1ac-default-rtdb.firebaseio.com",
     "storageBucket": "test1-3a1ac.appspot.com",
     "messagingSenderId": "1079616842106",
-    "appId": "1:1079616842106:web:6bb007499e14b610dacec3",
-    
+    "appId": "1:1079616842106:web:6bb007499e14b610dacec3",   
 }
 firebase=pyrebase.initialize_app(config)
 authe=firebase.auth()
@@ -18,11 +17,16 @@ database=firebase.database()
 
 def index(request):
     nm=database.child('Data').child('Name').get().val()
-
     if request.method=='POST':
         file2=request.FILES['document']
         document1=Files(file=file2)
         document1.save(file2)
+        file_name = document1.filename()
+        upload_file(file_name)
     return render(request,"index.html",{
         "name":nm,
     })
+
+def upload_file(file_name):
+    storage = firebase.storage()
+    storage.child(f"/Media/{file_name}").put(f"C:/Users/DELL/Desktop/PBL_Share_File_Prj/EduNexus/media/{file_name}")
