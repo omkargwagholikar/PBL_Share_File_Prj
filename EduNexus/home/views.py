@@ -23,10 +23,16 @@ def index(request):
         document1.save(file2)
         file_name = document1.filename()
         upload_file(file_name)
+        link = download_file(file_name)
     return render(request,"index.html",{
         "name":nm,
+        "link":link,
     })
 
 def upload_file(file_name):
     storage = firebase.storage()
     storage.child(f"/Media/{file_name}").put(f"C:/Users/DELL/Desktop/PBL_Share_File_Prj/EduNexus/media/{file_name}")
+
+def download_file(file_name):
+    storage = firebase.storage()
+    return storage.child(f"/Media/{file_name}").get_url(token=None)
