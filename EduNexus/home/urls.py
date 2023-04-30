@@ -19,7 +19,11 @@ from home import views
 from django.conf.urls.static import static
 from django.conf import settings
 urlpatterns = [    
-    path('',views.index,name='home'),
+    #path('',views.index,name='home'),
     # path('/test',views.test,name='test'),
-    
+    path('signin',views.signin,name='signin'),
+    path('main_page',views.main_page,name='main_page'),
+    path('logout/',views.logout,name='log'),
+    path('signup/',views.signup,name='signup'),
+    path('postsignup/',views.postsignup,name='postsignup'),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
