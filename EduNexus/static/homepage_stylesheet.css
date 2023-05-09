@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Electrolize&display=swap');
+html{ 
+    background: url('back.jpg') no-repeat center fixed; 
+    background-size:cover;
+    color: white;
+    
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    /* font-family: 'Bruno Ace SC', cursive; */
+    font-family: 'Electrolize', sans-serif;    
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+}
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+    background-color: rgb(2, 6, 27);
+}
+
+.logoimage img{
+    display: inline-block;
+    width: 250px;
+    height: 150px;
+}
+.projname h1{
+    font-size: 80px;margin-left: -150%;
+}
+/* .logo{
+    color: white;
+    font-size: 50px;
+    text-align: left;
+    user-select: none;
+} */
+.navigation a{
+    position: relative;
+    font-size: 40px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+}
+.navigation a::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: white;
+    border-radius: 5px;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform .5s;
+}
+.navigation a:hover::after{
+    transform: scaleX(1);
+    transform-origin: left;
+}
+.navigation .btnLogin-popup{
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid white;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: white;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: .5s;
+}
+.navigation .btnLogin-popup:hover{
+    background: white;
+    color: #162938;
+}
+
+.content{
+    width:100%;
+    position: absolute;
+    top: 30%;
+    color: white;
+    text-align: center;
+}
+.content h1{
+    margin-top: 70px;
+    font-size: 120px;
+}
+.content button{
+    width: 600px;
+    padding: 35px 0;
+    text-align: center;
+    margin: 20px 10px;
+    border-radius: 60px;
+    font-weight: bold;
+    border: 2px solid white;
+    background: black;
+    color: white;
+    cursor: pointer;
+    font-size: 35px;
+    
+}
+.content button:hover{
+    transition: .5s;
+    /* background: rgb(192, 5, 195); */
+    /* background: rgb(188, 33, 168); */
+    background: rgb(147, 146, 146);
+}
+/* .footer{
+    position: absolute;
+    color: white;
+    height: 400px;
+    
+    width:100%;
+}
+@media(max-width:700px){
+    .content h1{
+        margin-top: 30px;
+        font-size: 20px;
+    }
+} */
+.container{
+    width: 92%;
+    height: 500px;
+    margin-right: 3%;
+    margin-left: 3%;
+    background: transparent;
+    backdrop-filter: blur(200px); 
+    position: relative;
+    top: 100%;
+    border:2px solid  white;
+    border-radius: 20px;
+}
+.container h1{
+    margin-top: 1%;
+    margin-left: 1%;
+    font-size: 50px;
+}
+.container p{
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 20px;
+    font-size: 30px;
+}
+.container button{
+    width: 200px;
+    height: 100px;
+    margin-left: 3%;
+    margin-top: 2%;
+    font-size: 30px;
+    background: black;
+    color: white;
+    border: 2px solid white;
+    border-radius: 20px;
+    backdrop-filter: blur(50px);
+}
+.container button:hover{
+    background-color: rgb(147, 146, 146);
+}
+
+.container1{
+    margin-top: 1250px;
+    width: 100%;
+    background-color:  rgb(2, 6, 27);
+    height: 250px;
+}
+#st{
+    font-size: 40px;
+    margin-left: 4%;
+}
+#nd{
+    margin-top:1% ;
+    font-size: 40px;
+    margin-left: 4%;
+}
+.container1 pre{
+    margin-top: 1%;
+    margin-left: 6%;
+    font-size: 24px;
+}
+.container1 .icon{
+    color: white;
+    margin-left: 6%;
+    font-size: xx-large;
+}

@@ -21,19 +21,7 @@ database=firebase.database()
 def signin(request):
     print("signin")
     return render(request,"signin.html")
-def main_page(request):
-    if request.method=='POST':
-        if 'Upload' in request.POST:
-            print("hi")
-            file2=request.FILES['document']
-            document1=Files(file=file2)
-            document1.save(file2)
-            file_name = document1.filename()
-            upload_file(file_name)
-            
-            link = download_file(file_name)
-        else:
-            print("jkdkdkdk")
+def postsignin(request):
     email=request.POST.get('email')
     passw=request.POST.get('pass')
     try:
@@ -46,11 +34,46 @@ def main_page(request):
     print("hi1")
     session_id= user['idToken']   
     request.session['uid']=str(session_id)    
+    #nm=database.child('Data').child('Name').get().val()
+    return render(request,'home_page.html') 
+def searchfile(request):
+    print("hi")
+    return render(request,'searchfile.html')
+def home_page(request):
+    print("signin")
+    return render(request,"home_page.html")
+def main_page(request):
+    if request.method=='POST':
+        if 'Upload' in request.POST:
+            print("hi")
+            file2=request.FILES['document']
+            document1=Files(file=file2)
+            document1.save(file2)
+            file_name = document1.filename()
+            upload_file(file_name)            
+            link = download_file(file_name)
+            print(file_name)
+            return render(request,'signin.html') 
+        else:
+            print("jkdkdkdk")
+    """email=request.POST.get('email')
+    passw=request.POST.get('pass')
+    try:
+        print("iriroorrkn")
+        user=authe.sign_in_with_email_and_password(email,passw)
+    except:
+        print("hello")
+        message="Invalid Credentials"
+        return render(request,"signin.html",{"messe":message})
+    print("hi1")
+    session_id= user['idToken']   
+    request.session['uid']=str(session_id) """   
     nm=database.child('Data').child('Name').get().val()
        
     return render(request,"main_page.html",{
-        "name":nm,        
+         "name":nm,        
     })
+    #return render(request,'home_page.html')
 
 def logout(request):
     auth.logout(request)
@@ -73,7 +96,8 @@ def postsignup(request):
     return render(request,"signin.html")
 def upload_file(file_name):
     storage = firebase.storage()
-    storage.child(f"/Media/{file_name}").put(f"C:/Users/DELL/Desktop/PBL_Share_File_Prj/EduNexus/media/{file_name}")
+    #storage.child(f"/Media/{file_name}").put(f"C:/Users/DELL/Desktop/PBL_Share_File_Prj/EduNexus/media/{file_name}")
+    storage.child(f"/Media/{file_name}").put(r"C:\Users\ameys\Downloads\WhatsApp Image 2023-05-03 at 11.14.27 PM.jpeg")
 def download_file(file_name):
     storage = firebase.storage()
     return storage.child(f"/Media/{file_name}").get_url(token=None)
