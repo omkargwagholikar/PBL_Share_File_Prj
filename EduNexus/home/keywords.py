@@ -115,18 +115,19 @@ o.keyword_extract()
 import PyPDF2
 from pptx import Presentation
 import glob
-from rake_nltk import Rake
 import nltk
+from rake_nltk import Rake
 
+text_list=[]
 class extract:
   def _init_(self):
       
-      self.text_list = []
-      self.text_list = []
+      #self.text_list = []
+      #self.text_list = []
       self.keywords = []
       self.summary = []
       self.metadata = {}
-
+    
   def read_pdf(self, path):
       reader = PyPDF2.PdfReader(path)
       page = reader.pages[0]
@@ -136,25 +137,30 @@ class extract:
         page = reader.pages[i]
         text = page.extract_text()
         filter = ''.join([chr(i) for i in range(1, 32)])
-        self.text_list.append(text.translate(str.maketrans('', '', filter)))
-      return self.text_list
+        #self.text_list.append(text.translate(str.maketrans('', '', filter)))
+        text_list.append(text.translate(str.maketrans('', '', filter)))
+      return text_list
   def extract_keywords(self, fullText):
-    rake = Rake()
-    for text in self.read_pdf(path):
-      rake.extract_keywords_from_text(text)
-      self.keywords.append(rake.get_ranked_phrases_with_scores())
+    print(text_list)
+    r1 = Rake()
+    #for text in self.read_pdf(path):
+    print("kolfdofdofoldfdfdlfld")
+    for text in text_list:
+      print(text)
+      r1.extract_keywords_from_text(text)
+      self.keywords.append(r1.get_ranked_phrases_with_scores())
     return self.keywords
   
   def extract_text(self, path):
         # if pdf
         if True:
-            self.text_list = self.read_pdf(path)
-            return self.extract_keywords(self.text_list)
-  
+            text_list = self.read_pdf(path)
+            return self.extract_keywords(text_list)
+        
     
      
   
-path = "C:\Users\ameys\Downloads\Web+Dev+Resources (1).pdf"
+path = r"home\cocppt.pdf"
 t = extract()
 
 print(t.extract_text(path))

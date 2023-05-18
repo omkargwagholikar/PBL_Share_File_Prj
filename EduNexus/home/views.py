@@ -1,5 +1,5 @@
 from django.shortcuts import render,HttpResponse
-from .models import Files
+from .models import Files,file_name_against_keyword,keyword_against_file_name
 import pyrebase
 from django.contrib import auth
 from django.contrib.auth import authenticate
@@ -50,9 +50,27 @@ def main_page(request):
             document1=Files(file=file2)
             document1.save(file2)
             file_name = document1.filename()
-            upload_file(file_name)            
+
+            upload_file(file_name)
+
             link = download_file(file_name)
             print(file_name)
+            """s=document1.extract_keyword()
+            x=file_name_against_keyword.objects.filter(file_name=file_name)
+            y=eval(x)
+            s1=eval(s)            
+            file_name_against_keyword(file_name=file_name,keyword=str(y))
+            for j in s1:
+                x1=keyword_against_file_name.objects.filter(keyword=j)
+                y1=eval(x1)
+                if(len(y1)==0):
+                    y1.append(file_name)
+                    keyword_against_file_name(keyword=str(y1),keyword=file_name)
+                else:        
+                    obj=keyword_against_file_name()
+                    y1.append(file_name)
+                    obj.keyword=str(y1)
+                    obj.save()"""
             return render(request,'signin.html') 
         else:
             print("jkdkdkdk")
