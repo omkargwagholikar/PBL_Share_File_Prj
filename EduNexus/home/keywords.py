@@ -144,17 +144,18 @@ def extract_keywords(fullText):
         keywords.append(r1.get_ranked_phrases_with_scores())
     return keywords
 
-def extract_summary(fullText):
-    summary = []
-    for text in fullText:
-        summary.append(nltk.sent_tokenize(text))
-    return summary
 
 def extract_text(path):
     if True:
         text_list = read_pdf(path)
         return extract_keywords(text_list)     
   
+def extract_summary(fullText):
+    summary = []
+    for text in fullText:
+        summary.append(nltk.sent_tokenize(text))
+    return summary
+
 path = r"C:\Users\DELL\Desktop\Resume\Omkar_W_Resume.pdf"
 
 print(extract_text(path))

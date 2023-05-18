@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 urlpatterns = [    
     #path('',views.index,name='home'),
-    # path('/test',views.test,name='test'),
+    # path('/test',views.test,name='test'),post_signin
     path('signin',views.signin,name='signin'),
     path('main_page/',views.main_page,name='main_page'),
     path('home_page/',views.main_page,name='home_page'),
@@ -29,4 +29,5 @@ urlpatterns = [
     path('searchfile/',views.searchfile,name='searchfile'),
     path('postsignup/',views.postsignup,name='postsignup'),
     path('postsignin/',views.postsignin,name='postsignin'),
+    path('post_signin/',views.postsignin,name='postsignin'),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

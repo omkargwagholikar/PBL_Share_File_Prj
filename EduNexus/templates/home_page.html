@@ -22,11 +22,11 @@
         
         <nav class="navigation">
             {% comment %} <a href="login.html" target="_blank">Login</a> {% endcomment %}
-            <a href='{% url 'signin'%}' target="_blank">Login</a>
+            <a href="{% url 'signin'%}" target="_blank">Login</a>
             {% comment %} <a href="sign.html" target="_blank">Sign up</a> {% endcomment %}
-            <a href='{% url 'signup'%}' target="_blank">Sign up</a>
+            <a href="{% url 'signup'%}" target="_blank">Sign up</a>
             <a href="#info">About us</a>
-            <a href='{% url 'log'%}' target="_blank">Logout</a>
+            <a href="{% url 'log'%}" target="_blank">Logout</a>
         </nav>
     </header>
     <div class="content">   

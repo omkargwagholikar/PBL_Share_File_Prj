@@ -45,7 +45,7 @@ def home_page(request):
 def main_page(request):
     if request.method=='POST':
         if 'Upload' in request.POST:
-            print("hi")
+            print("Main Page Post request")
             file2=request.FILES['document']
             document1=Files(file=file2)
             document1.save(file2)
@@ -54,26 +54,30 @@ def main_page(request):
             upload_file(file_name)
 
             link = download_file(file_name)
+            
+            s=document1.extract_keyword()
+            fileObject=file_name_against_keyword.objects.filter(filename=file_name)
+            print("Objects here: ", fileObject)
+            print("Document word:",s)
+            # y=eval(x)
+            # s1=eval(s)            
+            # file_name_against_keyword(file_name=file_name,keyword=str(y))
+            # for j in s1:
+            #     x1=keyword_against_file_name.objects.filter(keyword=j)
+            #     y1=eval(x1)
+            #     if(len(y1)==0):
+            #         y1.append(file_name)
+            #         keyword_against_file_name(keyword=str(y1),keyword=file_name)
+            #     else:        
+            #         obj=keyword_against_file_name()
+            #         y1.append(file_name)
+            #         obj.keyword=str(y1)
+            #         obj.save()
+            
             print(file_name)
-            """s=document1.extract_keyword()
-            x=file_name_against_keyword.objects.filter(file_name=file_name)
-            y=eval(x)
-            s1=eval(s)            
-            file_name_against_keyword(file_name=file_name,keyword=str(y))
-            for j in s1:
-                x1=keyword_against_file_name.objects.filter(keyword=j)
-                y1=eval(x1)
-                if(len(y1)==0):
-                    y1.append(file_name)
-                    keyword_against_file_name(keyword=str(y1),keyword=file_name)
-                else:        
-                    obj=keyword_against_file_name()
-                    y1.append(file_name)
-                    obj.keyword=str(y1)
-                    obj.save()"""
             return render(request,'signin.html') 
         else:
-            print("jkdkdkdk")
+            print("Main Page Post Else")
     """email=request.POST.get('email')
     passw=request.POST.get('pass')
     try:
@@ -91,7 +95,6 @@ def main_page(request):
     return render(request,"main_page.html",{
          "name":nm,        
     })
-    #return render(request,'home_page.html')
 
 def logout(request):
     auth.logout(request)
@@ -115,7 +118,7 @@ def postsignup(request):
 def upload_file(file_name):
     storage = firebase.storage()
     #storage.child(f"/Media/{file_name}").put(f"C:/Users/DELL/Desktop/PBL_Share_File_Prj/EduNexus/media/{file_name}")
-    storage.child(f"/Media/{file_name}").put(r"C:\Users\ameys\Downloads\WhatsApp Image 2023-05-03 at 11.14.27 PM.jpeg")
+    storage.child(f"/Media/{file_name}").put(f"media/{file_name}")
 def download_file(file_name):
     storage = firebase.storage()
     return storage.child(f"/Media/{file_name}").get_url(token=None)
