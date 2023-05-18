@@ -119,48 +119,42 @@ import nltk
 from rake_nltk import Rake
 
 text_list=[]
-class extract:
-  def _init_(self):
-      
-      #self.text_list = []
-      #self.text_list = []
-      self.keywords = []
-      self.summary = []
-      self.metadata = {}
-    
-  def read_pdf(self, path):
-      reader = PyPDF2.PdfReader(path)
-      page = reader.pages[0]
-      no_of_pages = len(reader.pages)
-      # text_list = []
-      for i in range(no_of_pages):
+
+def read_pdf(path):
+    reader = PyPDF2.PdfReader(path)
+    page = reader.pages[0]
+    no_of_pages = len(reader.pages)
+    # text_list = []
+    for i in range(no_of_pages):
         page = reader.pages[i]
         text = page.extract_text()
         filter = ''.join([chr(i) for i in range(1, 32)])
         #self.text_list.append(text.translate(str.maketrans('', '', filter)))
         text_list.append(text.translate(str.maketrans('', '', filter)))
-      return text_list
-  def extract_keywords(self, fullText):
+    return text_list
+
+
+def extract_keywords(fullText):
     print(text_list)
     r1 = Rake()
-    #for text in self.read_pdf(path):
-    print("kolfdofdofoldfdfdlfld")
-    for text in text_list:
-      print(text)
-      r1.extract_keywords_from_text(text)
-      self.keywords.append(r1.get_ranked_phrases_with_scores())
-    return self.keywords
-  
-  def extract_text(self, path):
-        # if pdf
-        if True:
-            text_list = self.read_pdf(path)
-            return self.extract_keywords(text_list)
-        
-    
-     
-  
-path = r"home\cocppt.pdf"
-t = extract()
+    keywords = []
+    for text in fullText:
+        print(text)
+        r1.extract_keywords_from_text(text)
+        keywords.append(r1.get_ranked_phrases_with_scores())
+    return keywords
 
-print(t.extract_text(path))
+def extract_summary(fullText):
+    summary = []
+    for text in fullText:
+        summary.append(nltk.sent_tokenize(text))
+    return summary
+
+def extract_text(path):
+    if True:
+        text_list = read_pdf(path)
+        return extract_keywords(text_list)     
+  
+path = r"C:\Users\DELL\Desktop\Resume\Omkar_W_Resume.pdf"
+
+print(extract_text(path))
