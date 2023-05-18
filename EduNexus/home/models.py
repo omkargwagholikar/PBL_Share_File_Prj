@@ -27,10 +27,15 @@ class Files(models.Model):
         s=str(l1)
         print(s)
         return s
+    
+    def __str__(self) -> str:
+        return self.file.name
 class file_name_against_keyword(models.Model):
     filename=models.CharField(max_length=1024)
     keyword=models.CharField(max_length=1024)
     
+    def __str__(self) -> str:
+        return self.filename
 
 class keyword_against_file_name(models.Model):
     filename=models.CharField(max_length=1024)

@@ -59,6 +59,9 @@ def main_page(request):
             fileObject=file_name_against_keyword.objects.filter(filename=file_name)
             print("Objects here: ", fileObject)
             print("Document word:",s)
+
+            file_name_against_keyword(filename=file_name, keyword=s).save()
+            
             # y=eval(x)
             # s1=eval(s)            
             # file_name_against_keyword(file_name=file_name,keyword=str(y))
