@@ -30,4 +30,7 @@ urlpatterns = [
     path('postsignup/',views.postsignup,name='postsignup'),
     path('postsignin/',views.postsignin,name='postsignin'),
     path('post_signin/',views.postsignin,name='postsignin'),
+    path('search/',views.searchTest,name='searchTest'),
+    path('clear/',views.clear,name='clear'),
+    path('searchBar/',views.searchBar,name='searchBar'),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

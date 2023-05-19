@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render,HttpResponse
 from .models import Files,file_name_against_keyword,keyword_against_file_name
 import pyrebase
@@ -37,8 +38,8 @@ def postsignin(request):
     #nm=database.child('Data').child('Name').get().val()
     return render(request,'home_page.html') 
 def searchfile(request):
-    print("hi")
-    return render(request,'searchfile.html')
+    l=[]   
+    return render(request,'searchfile.html',{"l":l})
 def home_page(request):
     print("signin")
     return render(request,"home_page.html")
@@ -62,42 +63,71 @@ def main_page(request):
 
             file_name_against_keyword(filename=file_name, keyword=s).save()
             
-            # y=eval(x)
-            # s1=eval(s)            
-            # file_name_against_keyword(file_name=file_name,keyword=str(y))
-            # for j in s1:
-            #     x1=keyword_against_file_name.objects.filter(keyword=j)
-            #     y1=eval(x1)
-            #     if(len(y1)==0):
-            #         y1.append(file_name)
-            #         keyword_against_file_name(keyword=str(y1),keyword=file_name)
-            #     else:        
-            #         obj=keyword_against_file_name()
-            #         y1.append(file_name)
-            #         obj.keyword=str(y1)
-            #         obj.save()
+
             
+            extractedKeyWordsList=eval(s)            
+            
+            for word in extractedKeyWordsList:
+                keyWordObj=keyword_against_file_name.objects.filter(keyword=word)
+                if keyWordObj.exists():
+                    keyObj = keyword_against_file_name.objects.get(keyword=word)
+                    files = eval(keyObj.filename)
+                    files.append(file_name)
+                    files = str(files)
+                    keyObj.save()
+                else:
+                    keyword_against_file_name(keyword = word, filename = f"['{file_name}']").save()
+
             print(file_name)
             return render(request,'main_page.html') 
         else:
             print("Main Page Post Else")
-    """email=request.POST.get('email')
-    passw=request.POST.get('pass')
-    try:
-        print("iriroorrkn")
-        user=authe.sign_in_with_email_and_password(email,passw)
-    except:
-        print("hello")
-        message="Invalid Credentials"
-        return render(request,"signin.html",{"messe":message})
-    print("hi1")
-    session_id= user['idToken']   
-    request.session['uid']=str(session_id) """   
+
+
+    # email=request.POST.get('email')
+    # passw=request.POST.get('pass')
+    # try:
+    #     print("iriroorrkn")
+    #     user=authe.sign_in_with_email_and_password(email,passw)
+    # except:
+    #     print("hello")
+    #     message="Invalid Credentials"
+    #     return render(request,"signin.html",{"messe":message})
+    # print("hi1")
+    # session_id= user['idToken']   
+    # request.session['uid']=str(session_id) 
+
+
     nm=database.child('Data').child('Name').get().val()
        
     return render(request,"main_page.html",{
          "name":nm,        
     })
+
+
+def clear(request):
+    keyword_against_file_name.objects.all().delete()
+    file_name_against_keyword.objects.all().delete()
+    Files.objects.all().delete()
+
+    return JsonResponse({"message":"Cleared"})
+
+def searchTest(request):
+    try:
+        temp = request.GET['search']
+        mydata = list(keyword_against_file_name.objects.filter(keyword__contains=temp).values())
+    except:
+        mydata = "No data found"
+    try:
+        fileName = list(file_name_against_keyword.objects.filter(filename__contains=temp).values())
+        if len(temp) > 0:
+            mydata.extend(fileName)
+    except:
+        pass
+    return JsonResponse({"fileData":list(mydata)})
+
+def searchBar(request):
+    return render(request,'searchBar.html')
 
 def logout(request):
     auth.logout(request)
@@ -118,10 +148,11 @@ def postsignup(request):
     data={"name":name,"status":"1"}
     database.child("users").child(uid).child("details").set(data)   
     return render(request,"signin.html")
+
 def upload_file(file_name):
     storage = firebase.storage()
-    #storage.child(f"/Media/{file_name}").put(f"C:/Users/DELL/Desktop/PBL_Share_File_Prj/EduNexus/media/{file_name}")
     storage.child(f"/Media/{file_name}").put(f"media/{file_name}")
+
 def download_file(file_name):
     storage = firebase.storage()
     return storage.child(f"/Media/{file_name}").get_url(token=None)

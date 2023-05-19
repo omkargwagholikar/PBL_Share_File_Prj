@@ -21,13 +21,21 @@
             <h3>Date of upload</h3>
             <p>xyz</p>
         </div>
-
+        {% for userprofiles in l %}
+              <tr class="table-row">
+                  <td>{{ userprofiles.user_rank }}</td>  
+                  <td>{{ userprofiles.user }}</td>  
+                  <td>{{ userprofiles.quesno }}</td>  
+                  <td>{{ userprofiles.marks }}</td>  
+                  <td>{{ userprofiles.remainingTime }}</td>  
+              </tr>
+        {% endfor %}
         <div class="search-container">
             <input type="text" placeholder="Search...">
             <button type="submit"><i class="fa fa-search"></i></button>
         </div>
         <div class="myframe">
-
+               
             <iframe src="SE CSE Syllabus And Pattern - 2019.pdf" style="position:relative; width:98%; left:100%; top:-350px; height:1157px" ></iframe>
         </div>
 

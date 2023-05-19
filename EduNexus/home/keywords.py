@@ -114,7 +114,7 @@ o.keyword_extract()
 # from pypdf import PdfReader
 import PyPDF2
 from pptx import Presentation
-import glob
+import glob,os
 import nltk
 from rake_nltk import Rake
 
@@ -146,9 +146,18 @@ def extract_keywords(fullText):
 
 
 def extract_text(path):
-    if True:
+    fileType = path.split(".")[1]
+    print("file type = ", fileType)
+    if fileType=="pdf":
         text_list = read_pdf(path)
-        return extract_keywords(text_list)     
+        return extract_keywords(text_list)
+    elif fileType=="txt":
+        f=open(path,"r")
+        text_list = f.read()
+        print(text_list)
+        return extract_keywords(text_list)      
+    else:
+        print("File type not supported")  
   
 def extract_summary(fullText):
     summary = []
@@ -156,22 +165,7 @@ def extract_summary(fullText):
         summary.append(nltk.sent_tokenize(text))
     return summary
 
-path = r"C:\Users\ameys\Downloads\Web+Dev+Resources.pdf"
+# path = r"media\PPL_Questions.pdf"
 
-z=extract_text(path)
-#print(z)
-l1=[]
-if(len(z)<5):
-    for j in z:
-        print(j)
-        l1.append(j[1])
-else:
-    for j in z:
-        for i in j:
-            if(len(l1)<=10):
-                #print(j)
-                l1.append(i[1])
-            else:
-                break            
-s=str(l1)
-print(s)
+
+# z=extract_text(path)

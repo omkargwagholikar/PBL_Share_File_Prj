@@ -19,13 +19,15 @@ class Files(models.Model):
         l1=[]
         if(len(z)<5):
             for j in z:
-                print(j)
-                l1.append(j[1])
+                for i in j:
+                    if(len(l1)<=10):
+                        l1.append(i[1])
+                    else:
+                        break   
         else:
             for j in z:
                 for i in j:
                     if(len(l1)<=10):
-                        #print(j)
                         l1.append(i[1])
                     else:
                         break            
@@ -45,4 +47,7 @@ class file_name_against_keyword(models.Model):
 class keyword_against_file_name(models.Model):
     filename=models.CharField(max_length=1024)
     keyword=models.CharField(max_length=2024)
+
+    def __str__(self) -> str:
+        return self.keyword
 # class (models.Model):    
