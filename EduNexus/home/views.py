@@ -78,7 +78,7 @@ def main_page(request):
             #         obj.save()
             
             print(file_name)
-            return render(request,'signin.html') 
+            return render(request,'main_page.html') 
         else:
             print("Main Page Post Else")
     """email=request.POST.get('email')

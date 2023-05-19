@@ -135,11 +135,11 @@ def read_pdf(path):
 
 
 def extract_keywords(fullText):
-    print(text_list)
+    #print(text_list)
     r1 = Rake()
     keywords = []
     for text in fullText:
-        print(text)
+        #print(text)
         r1.extract_keywords_from_text(text)
         keywords.append(r1.get_ranked_phrases_with_scores())
     return keywords
@@ -156,6 +156,22 @@ def extract_summary(fullText):
         summary.append(nltk.sent_tokenize(text))
     return summary
 
-path = r"C:\Users\DELL\Desktop\Resume\Omkar_W_Resume.pdf"
+path = r"C:\Users\ameys\Downloads\Web+Dev+Resources.pdf"
 
-print(extract_text(path))
+z=extract_text(path)
+#print(z)
+l1=[]
+if(len(z)<5):
+    for j in z:
+        print(j)
+        l1.append(j[1])
+else:
+    for j in z:
+        for i in j:
+            if(len(l1)<=10):
+                #print(j)
+                l1.append(i[1])
+            else:
+                break            
+s=str(l1)
+print(s)

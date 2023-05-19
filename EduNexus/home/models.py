@@ -19,13 +19,18 @@ class Files(models.Model):
         l1=[]
         if(len(z)<5):
             for j in z:
+                print(j)
                 l1.append(j[1])
         else:
             for j in z:
-                if(len(l1)<=5):
-                    l1.append(j[1])        
+                for i in j:
+                    if(len(l1)<=10):
+                        #print(j)
+                        l1.append(i[1])
+                    else:
+                        break            
         s=str(l1)
-        print(s)
+        #print(s)
         return s
     
     def __str__(self) -> str:
