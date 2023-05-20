@@ -38,8 +38,13 @@ def postsignin(request):
     #nm=database.child('Data').child('Name').get().val()
     return render(request,'home_page.html') 
 def searchfile(request):
-    l=[]   
-    return render(request,'searchfile.html',{"l":l})
+    file_list = [
+        {'name': 'File 1', 'link': '/media/file1.pdf'},
+        {'name': 'File 2', 'link': '/media/file2.pdf'},
+        {'name': 'File 3', 'link': '/media/file3.pdf'},
+    ]
+
+    return render(request,'searchfile.html',{'l':file_list})
 def home_page(request):
     print("signin")
     return render(request,"home_page.html")

@@ -47,6 +47,7 @@
     font-size: 30px;
     left: 10%;
  }
+ 
 /* .content{
     width:100%;
     position: absolute;
@@ -103,7 +104,7 @@
 }
 .search-container {
     position: relative;
-    top: -20%;
+    top: 40%;
     left: 2%;
     display: flex;
     width: 95%;
@@ -121,7 +122,7 @@
 }
 
 .search-container button {
-    padding: 20px;
+    padding: -20px;
     background-color: blue;
     color: white;
     border: none;
@@ -136,3 +137,15 @@
     left: 90px;
     height: 100vh;
 } */
+.card-container{
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;   
+}
+.card{
+
+    flex:0 0 auto;
+    width: 200px;
+    margin-right: 10px;
+}
