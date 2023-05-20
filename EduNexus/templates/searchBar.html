@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+    $.get("http://127.0.0.1:8000/search/?search=dread", function(data, status){
+      console.log(`Data: ${data}\nStatus: ${status}`);
+
+      alert("Data: " + data + "\nStatus: " + status);
+    });
+  });
+});
+function changeQuery(query){
+  var link = `http://127.0.0.1:8000/search/?search=${query}`;
+  console.log(link);
+  // $.get(link, function(data, status){
+  //     console.log(`Data: ${data}\nStatus: ${status}`);
+  //     // alert("Data: " + data + "\nStatus: " + status);
+  //   });
+    fetch(link)
+  .then(response => response.json())
+  .then(data => {
+    // Access the desired value from the received data object
+    console.log(data); // Output: value
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+}
+</script>
+</head>
+<body>
+<input type="text" oninput="changeQuery(this.value)">
+<button>Call</button>
+
+</body>
+</html>

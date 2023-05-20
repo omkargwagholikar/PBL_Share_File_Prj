@@ -21,13 +21,26 @@
             <h3>Date of upload</h3>
             <p>xyz</p>
         </div>
-
+        
+        
+        
         <div class="search-container">
             <input type="text" placeholder="Search...">
+            
             <button type="submit"><i class="fa fa-search"></i></button>
         </div>
+        <div class="card-container">    
+            {% for f in l %}
+                <div class="card">
+                  <ul>
+                    <h3>Click to the link for download</h3>
+                    <li><a href="{{f.link}}">{{f.name}}</li>
+                  </ul>
+                </div>  
+            {% endfor %}
+        </div>
         <div class="myframe">
-
+               
             <iframe src="SE CSE Syllabus And Pattern - 2019.pdf" style="position:relative; width:98%; left:100%; top:-350px; height:1157px" ></iframe>
         </div>
 
