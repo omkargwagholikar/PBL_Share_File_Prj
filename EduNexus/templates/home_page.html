@@ -4,22 +4,26 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1" >
     <link rel="stylesheet" href="/static/homepage_stylesheet.css">
 </head>
 
 <body>
     <header>
-        <div class="logoimage">
+        <!-- <div class="logoimage">
             <img src="/static/6.jpg" alt="EduNexus"/>
         </div>
 
         <div class="projname">
             <h1 class="logo">EduNexus</h1>
-        </div>
-        
+        </div> -->
+        <a href="PBL_Share_File_Prj\EduNexus\templates\home_page.html" target="_self" style="text-decoration: none; color: white; position: relative; left: -5rem;">
+            <p class="glitch">
+                <span aria-hidden="true">EduNexus</span>
+                EduNexus
+                <span aria-hidden="true">EduNexus</span>
+            </p>
+        </a>
         <nav class="navigation">
             {% comment %} <a href="login.html" target="_blank">Login</a> {% endcomment %}
             <a href='{% url 'signin'%}' target="_blank">Login</a>

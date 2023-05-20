@@ -70,13 +70,15 @@
                 <input type="password" placeholder="Password" name="pass" class="text-name">
             </div>
             <div class="remember-forgot">
-                <label><input type="checkbox">Remember me</label>
-                
+                <!-- <label><input type="checkbox">Remember me</label> -->
+                <a href="#">Forgot Password?</a>
             </div>
-            
-            <div class="input-name">
-                <input type="submit" class="button" value="SignIn">
-            </div>
+            <a href="homepage.html">
+
+                <div class="input-name">
+                    <input type="submit" class="button" value="SignIn">
+                </div>
+            </a>
             <div class="login-register">
                 <!-- <p>Don't have an account?</p><a href="registration.html" class="register-link">Register</a> -->
                 <button type="button" onclick="location.href='{% url 'signup'%}'">SignUp</button> 
