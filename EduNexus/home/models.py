@@ -17,22 +17,24 @@ class Files(models.Model):
     def extract_keyword(self):
         z = extract_text(f"media/{self.file.name}")
         l1=[]
-        if(len(z)<5):
-            for j in z:
-                for i in j:
-                    if(len(l1)<=10):
-                        l1.append(i[1])
-                    else:
-                        break   
-        else:
-            for j in z:
-                for i in j:
-                    if(len(l1)<=10):
-                        l1.append(i[1])
-                    else:
-                        break            
-        s=str(l1)
-        #print(s)
+        try:
+            if(len(z)<5):
+                for j in z:
+                    for i in j:
+                        if(len(l1)<=10):
+                            l1.append(i[1])
+                        else:
+                            break   
+            else:
+                for j in z:
+                    for i in j:
+                        if(len(l1)<=10):
+                            l1.append(i[1])
+                        else:
+                            break            
+            s=str(l1)
+        except:
+            s="['No Keywords Found']"
         return s
     
     def __str__(self) -> str:
