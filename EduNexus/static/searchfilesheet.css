@@ -108,8 +108,10 @@ html
 }
 .search-container {
     position: relative;
-    top: 40%;
-    left: 2%;
+    /* top: 40%; */
+    top:0%;
+    /* left: 2%; */
+    left: 1%;
     display: flex;
     width: 95%;
     align-items: center;
@@ -153,3 +155,26 @@ html
     width: 200px;
     margin-right: 10px;
 }
+/* Style for the result list container */
+#resultList {
+    margin-top: 20px;
+  }
+
+  /* Style for each result item */
+  #resultList div {
+    background-color: #f2f2f2;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+
+  /* Style for result item links */
+  #resultList a {
+    color: #333;
+    text-decoration: none;
+  }
+
+  /* Hover effect for result item links */
+  #resultList a:hover {
+    text-decoration: underline;
+  }
