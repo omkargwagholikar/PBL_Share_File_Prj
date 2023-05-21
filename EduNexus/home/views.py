@@ -4,6 +4,7 @@ from .models import Files,file_name_against_keyword,keyword_against_file_name
 import pyrebase
 from django.contrib import auth
 from django.contrib.auth import authenticate
+from collections import OrderedDict
 # Create your views here.
 #API CREDENTIALS
 config={
@@ -118,18 +119,31 @@ def clear(request):
     return JsonResponse({"message":"Cleared"})
 
 def searchTest(request):
+    # aaaa
     try:
         temp = request.GET['search']
         mydata = list(keyword_against_file_name.objects.filter(keyword__contains=temp).values())
+        keyNameLinkList = []
+        for file in mydata:
+            print(file["filename"])
+            fileNames = eval(file['filename'])
+            for fileName in fileNames:
+                keyNameLinkList.append([fileName, download_file(fileName)])
+        
     except:
-        mydata = "No data found"
+        keyNameLinkList = ["No data found"]
     try:
         fileName = list(file_name_against_keyword.objects.filter(filename__contains=temp).values())
-        if len(temp) > 0:
-            mydata.extend(fileName)
+        fileNameLinkList = []
+        for file in fileName:
+            fileNameLinkList.append([file["filename"],download_file(file['filename'])])
+
+        fileNameLinkList.extend(keyNameLinkList)
     except:
-        pass
-    return JsonResponse({"fileData":list(mydata)})
+        fileNameLinkList = keyNameLinkList
+    fileNameLinkList = list(OrderedDict((item[1], item) for item in fileNameLinkList).values())
+
+    return JsonResponse({"fileData":fileNameLinkList})
 
 def searchBar(request):
     return render(request,'searchBar.html')
