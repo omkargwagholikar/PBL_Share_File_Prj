@@ -24,6 +24,7 @@ def signin(request):
     print("signin")
     return render(request,"signin.html")
 def postsignin(request):
+    print("hi")
     email=request.POST.get('email')
     passw=request.POST.get('pass')
     try:
@@ -37,7 +38,14 @@ def postsignin(request):
     session_id= user['idToken']   
     request.session['uid']=str(session_id)    
     #nm=database.child('Data').child('Name').get().val()
-    return render(request,'home_page.html') 
+    return render(request,'home_page.html')
+
+def modalTest(request):
+    print("Modal Test")
+    return render(request,'modalTest.html',{
+         "name":"nm",        
+    })
+
 def searchfile(request):
     file_list = [
         {'name': 'File 1', 'link': '/media/file1.pdf'},
@@ -88,21 +96,6 @@ def main_page(request):
             return render(request,'main_page.html') 
         else:
             print("Main Page Post Else")
-
-
-    # email=request.POST.get('email')
-    # passw=request.POST.get('pass')
-    # try:
-    #     print("iriroorrkn")
-    #     user=authe.sign_in_with_email_and_password(email,passw)
-    # except:
-    #     print("hello")
-    #     message="Invalid Credentials"
-    #     return render(request,"signin.html",{"messe":message})
-    # print("hi1")
-    # session_id= user['idToken']   
-    # request.session['uid']=str(session_id) 
-
 
     nm=database.child('Data').child('Name').get().val()
        
@@ -177,7 +170,9 @@ def download_file(file_name):
     storage = firebase.storage()
     return storage.child(f"/Media/{file_name}").get_url(token=None)
 
-
+def readmore(request):
+    print("hi")
+    return render(request,"readmore.html")
 
 
 

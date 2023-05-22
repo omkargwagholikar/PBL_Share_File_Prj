@@ -541,3 +541,38 @@ header{
         width: 100%;
     }
   }
+
+  @media only screen and (min-width:601px)
+  {
+    .content{
+        width:67rem;
+        position: absolute;
+        top: 20rem;
+        left:43rem;
+        color: white;
+        text-align: center;
+    }
+    .content h1{
+        font-size: 6rem;
+        display:inline;
+    }
+    .container{
+        width: 97%;
+        height: 30rem;
+        margin-right: 3rem;
+        margin-left: 3rem;
+        background: transparent;
+        backdrop-filter: blur(20rem); 
+        position: relative;
+        top: 73rem;
+        border:.2rem solid  white;
+        border-radius: 2rem;
+    }
+    .container1{
+        top: 105rem;
+        width: 100%;
+        background-color:  rgb(2, 6, 27);
+        height: 15rem;
+        position: absolute;
+    }
+  }

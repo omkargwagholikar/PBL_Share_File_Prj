@@ -33,4 +33,6 @@ urlpatterns = [
     path('search/',views.searchTest,name='searchTest'),
     path('clear/',views.clear,name='clear'),
     path('searchBar/',views.searchBar,name='searchBar'),
+    path('test/',views.modalTest,name='modalTest'),
+    path('readmore/',views.readmore,name='readmore'),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
