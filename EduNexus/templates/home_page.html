@@ -17,7 +17,8 @@
         <div class="projname">
             <h1 class="logo">EduNexus</h1>
         </div> -->
-        <a href="PBL_Share_File_Prj\EduNexus\templates\home_page.html" target="_self" style="text-decoration: none; color: white; position: relative; left: -5rem;">
+        <!-- <a href="PBL_Share_File_Prj\EduNexus\templates\home_page.html" target="_self" style="text-decoration: none; color: white; position: relative; left: -5rem;"> -->
+        <a href="{% url 'home_page'%}" target="_self" style="text-decoration: none; color: white; position: relative; left: -5rem;">
             <p class="glitch">
                 <span aria-hidden="true">EduNexus</span>
                 EduNexus
@@ -25,10 +26,10 @@
             </p>
         </a>
         <nav class="navigation">
-            {% comment %} <a href="login.html" target="_blank">Login</a> {% endcomment %}
-            <a href="{% url 'signin'%}" target="_blank">Login</a>
-            {% comment %} <a href="sign.html" target="_blank">Sign up</a> {% endcomment %}
-            <a href="{% url 'signup'%}" target="_blank">Sign up</a>
+            <!-- {% comment %} <a href="login.html" target="_blank">Login</a> {% endcomment %}
+            <a href="{% url 'signin'%}" target="_blank">Login</a> -->
+            <!-- {% comment %} <a href="sign.html" target="_blank">Sign up</a> {% endcomment %}
+            <a href="{% url 'signup'%}" target="_blank">Sign up</a> -->
             <a href="#info">About us</a>
             <a href="{% url 'log'%}" target="_blank">Logout</a>
         </nav>

@@ -21,7 +21,7 @@ class Files(models.Model):
             if(len(z)<5):
                 for j in z:
                     for i in j:
-                        if(len(l1)<=10):
+                        if(len(l1)<=20):
                             l1.append(i[1])
                         else:
                             break   

@@ -20,6 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('home.urls')),
     #path(r'^$',views.signup)
-    path('',views.signin)
-    #path('signup',views.signup,name='signup'),
+    path('',views.signin),
+    #path('signup',views.signup,name='signup')
+    
 ]

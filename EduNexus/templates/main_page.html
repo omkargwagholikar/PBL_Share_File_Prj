@@ -26,7 +26,7 @@
             <div class="form-container">
                 <form method="post" action="/main_page/" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <input type="file" id="files" style="display: none;" name="document">
+                    <input type="file" id="files" style="display: none;" name="document" required>
                     <div class="choose">
                         <label for="files">Choose a file</label>
                     </div>

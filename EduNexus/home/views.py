@@ -133,6 +133,7 @@ def searchTest(request):
     except:
         keyNameLinkList = ["No data found"]
     try:
+    # if True:
         fileName = list(file_name_against_keyword.objects.filter(filename__contains=temp).values())
         fileNameLinkList = []
         for file in fileName:
