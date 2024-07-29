@@ -19,6 +19,20 @@ from home import views
 from django.conf.urls.static import static
 from django.conf import settings
 urlpatterns = [    
-    path('',views.index,name='home'),
-    
+    #path('',views.index,name='home'),
+    # path('/test',views.test,name='test'),post_signin
+    path('signin',views.signin,name='signin'),
+    path('main_page/',views.main_page,name='main_page'),
+    path('home_page/',views.home_page,name='home_page'),
+    path('logout/',views.logout,name='log'),
+    path('signup/',views.signup,name='signup'),
+    path('searchfile/',views.searchfile,name='searchfile'),
+    path('postsignup/',views.postsignup,name='postsignup'),
+    path('postsignin/',views.postsignin,name='postsignin'),
+    path('post_signin/',views.postsignin,name='postsignin'),
+    path('search/',views.searchTest,name='searchTest'),
+    path('clear/',views.clear,name='clear'),
+    path('searchBar/',views.searchBar,name='searchBar'),
+    path('test/',views.modalTest,name='modalTest'),
+    path('readmore/',views.readmore,name='readmore'),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
