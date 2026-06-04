@@ -1,0 +1,18 @@
+# Core Django app
+Django>=4.2,<5.0
+djangorestframework>=3.15
+django-cors-headers>=4.3
+
+# Existing functionality
+pyrebase4
+PyPDF2
+python-pptx
+rake-nltk
+nltk
+
+# Profile / HF token feature — used by /api/auth/profile/download-model/
+huggingface_hub>=0.20
+sentence-transformers>=2.2
+
+# Optional: server-side Firebase auth (recommended for production)
+firebase-admin>=6.5
